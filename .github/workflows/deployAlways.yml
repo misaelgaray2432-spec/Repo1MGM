@@ -3,6 +3,7 @@ name: 🚀 Tarea de Despliegue
 on:
    push:
      branches:
+        - main
 
 jobs:
   deploy:
@@ -16,10 +17,10 @@ jobs:
       - name: 📂 Sincronizando archivos via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ftp-misaelgaray.alwaysdata.net # Change if using another host
-          username: misaelgaray
-          password: Mgm1927.
-          server-dir: www/ # Replace with your correct path
+          server: ${{ secrets.FTP_SERVER }} # Change if using another host
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }} # Replace with your correct path
           protocol: ftps
           timeout: 86400000
           log-level: standard
